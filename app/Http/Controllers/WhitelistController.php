@@ -55,4 +55,13 @@ class WhitelistController extends Controller
         return redirect('whitelists')->with('success','Information has been  deleted');
     }
 
+    public function test(Request $request)
+    {
+        $exist = \App\Whitelist::where('ip', $request->input('ip'))->exists();
+        if($exist)
+            return 'true';
+        else
+            return 'false';
+    }
+
 }
